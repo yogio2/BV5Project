@@ -7,9 +7,6 @@ import pandas as pd
 
 df = px.data.gapminder()
 
-app = dash.Dash(__name__)
-server = app.server
-
 choro_fig = px.choropleth(
     df,
     locations="iso_alpha",
@@ -49,9 +46,6 @@ treemap_fig = px.treemap(
     hover_name="country",
     color="lifeExp"
 )
-
-
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 dropdown = dcc.Dropdown(
     id="dropdown",
@@ -125,6 +119,9 @@ treemap_modal = dbc.Modal(
     id="treemap-modal",
     size="lg"
 )
+
+app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 app.layout = html.Div([
     dbc.Container([
