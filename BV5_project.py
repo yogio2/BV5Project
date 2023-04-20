@@ -8,6 +8,7 @@ import pandas as pd
 df = px.data.gapminder()
 
 app = dash.Dash(__name__)
+server = app.server
 
 choro_fig = px.choropleth(
     df,
