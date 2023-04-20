@@ -8,7 +8,6 @@ import pandas as pd
 df = px.data.gapminder()
 
 app = dash.Dash(__name__)
-server = app.server
 
 choro_fig = px.choropleth(
     df,
@@ -81,7 +80,7 @@ scatter_modal = dbc.Modal(
             )
         ),
         dbc.ModalFooter(
-            dbc.Button("Close", id="close-button", className="ml-auto")
+            dbc.Button("Close", id="close-button-scatter", className="ml-auto")
         )
     ],
     id="scatter-modal",
@@ -100,7 +99,7 @@ sunburst_modal = dbc.Modal(
             )
         ),
         dbc.ModalFooter(
-            dbc.Button("Close", id="close-button", className="ml-auto")
+            dbc.Button("Close", id="close-button-sunburst", className="ml-auto")
         )
     ],
     id="sunburst-modal",
@@ -119,7 +118,7 @@ treemap_modal = dbc.Modal(
             )
         ),
         dbc.ModalFooter(
-            dbc.Button("Close", id="close-button", className="ml-auto")
+            dbc.Button("Close", id="close-button-treemap", className="ml-auto")
         )
     ],
     id="treemap-modal",
@@ -164,7 +163,7 @@ def update_choro_graph(value):
 @app.callback(
     dash.dependencies.Output("scatter-modal", "is_open"),
     [dash.dependencies.Input("scatter-button", "n_clicks"),
-     dash.dependencies.Input("close-button", "n_clicks")],
+     dash.dependencies.Input("close-button-scatter", "n_clicks")],
     [dash.dependencies.State("scatter-modal", "is_open")]
 )
 def toggle_scatter_modal(n1, n2, is_open):
@@ -175,7 +174,7 @@ def toggle_scatter_modal(n1, n2, is_open):
 @app.callback(
     dash.dependencies.Output("sunburst-modal", "is_open"),
     [dash.dependencies.Input("sunburst-button", "n_clicks"),
-     dash.dependencies.Input("close-button", "n_clicks")],
+     dash.dependencies.Input("close-button-sunburst", "n_clicks")],
     [dash.dependencies.State("sunburst-modal", "is_open")]
 )
 def toggle_sunburst_modal(n1, n2, is_open):
@@ -186,7 +185,7 @@ def toggle_sunburst_modal(n1, n2, is_open):
 @app.callback(
     dash.dependencies.Output("treemap-modal", "is_open"),
     [dash.dependencies.Input("treemap-button", "n_clicks"),
-     dash.dependencies.Input("close-button", "n_clicks")],
+     dash.dependencies.Input("close-button-treemap", "n_clicks")],
     [dash.dependencies.State("treemap-modal", "is_open")]
 )
 def toggle_treemap_modal(n1, n2, is_open):
